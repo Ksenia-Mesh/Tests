@@ -1,0 +1,59 @@
+documents = [
+        {"type": "passport", "number": "2207 876234", "name": "Vasil Gupkin"},
+        {"type": "invoice", "number": "11-2", "name": "Gennady Pokemonov"},
+        {"type": "insurance", "number": "10006", "name": "Aristarch Pavlov"}
+      ]
+
+directories = {
+        '1': ['2207 876234', '11-2', '5455 028765'],
+        '2': ['10006'],
+        '3': []
+      }
+
+def use_name():
+  number = input ('Enter your passport number: ')
+  for number1 in documents:
+    if number1.get('number') == number:
+      return number1.get("name")
+  return ('Passpotr number missing')
+
+def use_delf():
+  number = input ('Enter your passport number: ')
+  for deft1 in directories:
+    if number in directories.get(deft1):
+      return deft1
+  return ('Number does not exist')
+
+def use_date ():
+  # h=input('Enter your name: ')
+  for date in documents:
+    type = date['type']
+    number = date['number']
+    name = date['name']
+    print('{0} "{1}" "{2}"'.format(type,number,name))
+
+
+def use_new_doc ():
+  shelf = input('Enet number shelf: ')
+  if shelf in directories.keys():
+    type = input('Enter type: ')
+    number = input('Enter number document: ')
+    name = input('Enter name: ')        
+    doc = {'type': type, 'number': number, 'name': name}
+    documents.append(doc)
+    return ('Document add')
+  else:
+    print('Not shelf')
+
+
+
+cmd_diction = {'a': use_new_doc, 'p': use_name, 's':use_delf, 'l': use_date}
+
+while True:
+  print('Choose command:p, s, l, a')
+  com = input('Enter the command: ')
+
+  if com in cmd_diction:
+    print(cmd_diction[com]())
+  else:
+    print ('Invalid command')
